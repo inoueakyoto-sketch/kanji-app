@@ -1,0 +1,119 @@
+/* iPad / Safari operation layer. This file intentionally comes after styles.css. */
+html {
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  overscroll-behavior-y: none;
+}
+
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+button,
+input,
+select,
+[role="button"] {
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+.kanji-tile,
+.compare-card,
+.stroke-choice,
+.strategy-btn,
+.writing-btn,
+.game-pick {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ipad-install-banner {
+  position: sticky;
+  top: 65px;
+  z-index: 45;
+  max-width: 1180px;
+  margin: 10px auto 0;
+  padding: 12px 14px;
+  border: 1px solid #b8d7e7;
+  border-radius: 16px;
+  background: #eef8ff;
+  color: #264f66;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  box-shadow: 0 8px 20px rgba(38, 79, 102, .08);
+}
+
+.ipad-install-banner span {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.ipad-install-banner button {
+  border: 1px solid #9ec7dc;
+  background: #fff;
+  color: #264f66;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .nav-btn,
+  .soft-btn,
+  .primary-btn,
+  .sun-btn {
+    padding: 12px 15px;
+  }
+
+  .kanji-tile:hover,
+  .compare-card:hover,
+  .stroke-choice:hover,
+  .soft-btn:hover,
+  .nav-btn:hover,
+  .primary-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* iPad landscape: keep the learning target large without vertical overflow. */
+@media (min-width: 768px) and (orientation: landscape) and (max-height: 900px) {
+  .container { padding-top: 14px; padding-bottom: 14px; }
+  .game-body { min-height: 430px; }
+  .glyph-stage { width: min(400px, 52vh); }
+  .topbar { padding-top: 9px; padding-bottom: 9px; }
+}
+
+/* iPad portrait: stack layouts and keep controls reachable. */
+@media (min-width: 700px) and (max-width: 1024px) and (orientation: portrait) {
+  .hero,
+  .intro-layout,
+  .notebook-layout,
+  .adult-layout { grid-template-columns: 1fr; }
+  .zones { grid-template-columns: 1fr; }
+  .glyph-stage { width: min(560px, 86vw); }
+  .game-body { min-height: 620px; }
+}

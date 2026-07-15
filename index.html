@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#eef5f1" name="theme-color"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="default" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="かんじたんけん" name="apple-mobile-web-app-title"/>
+<link href="/manifest.webmanifest" rel="manifest"/>
+<link href="/icons/apple-touch-icon.png" rel="apple-touch-icon"/>
+<title>かんじたんけん｜iPad正式運用版</title>
+<link href="/src/styles.css" rel="stylesheet"/>
+<link href="/src/ipad.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+<div class="brand"><div class="brand-mark">🔎</div><div>かんじたんけん<small>自分の見つけ方をさがそう</small></div></div>
+<button aria-label="利用者を切り替える" class="formal-profile-btn" id="formalProfileBtn" type="button"><span class="formal-profile-avatar" id="formalProfileAvatar">🌱</span><span class="formal-profile-copy"><strong id="formalProfileName">たんけん1</strong><small id="formalProfileCode">P001</small></span><span aria-hidden="true">⌄</span></button><nav class="nav">
+<button class="nav-btn active" data-page="home">たんけん</button>
+<button class="nav-btn" data-page="notebook">観察ノート</button>
+<button class="nav-btn" data-page="adult">おとな画面</button>
+<button class="nav-btn" id="settingsBtn">設定</button>
+</nav>
+</header>
+<main>
+<div class="ipad-install-banner hidden" id="ipadInstallBanner" role="status">
+<div><strong>iPadでアプリのように使えます</strong><br/><span>Safariの共有ボタンから「ホーム画面に追加」を選んでください。</span></div>
+<button aria-label="案内を閉じる" id="dismissInstallBanner" type="button">閉じる</button>
+</div>
+<section class="page active" id="homePage"><div class="container"><div class="formal-profile-notice"><span id="formalHomeAvatar">🌱</span><div><strong id="formalHomeName">たんけん1</strong><small><span id="formalHomeCode">P001</span> の観察ノートに記録します</small></div><button class="soft-btn" id="formalHomeSwitch" type="button">きりかえる</button></div>
+<div class="hero">
+<div class="hero-card">
+<div class="eyebrow">見る力を育てる 漢字の冒険</div>
+<h1>自分のやり方なら、<br/>できるかも。</h1>
+<p>線、部品、長さ、場所、順番。漢字のひみつを見つけながら、自分に合う覚え方を探します。速さを競わず、間違えても発見はなくなりません。</p>
+<div class="promise">🌿 やめる・休む・ヒントを使うのも、だいじな作戦</div>
+</div>
+<div class="hero-card today-card">
+<div class="today-row"><div class="today-kanji" id="todayKanji">一</div><div><div class="eyebrow">きょうの たんけん</div><h2 id="todayTitle">「一」を見てみよう</h2><p id="todayMeta">いち・1画</p></div></div>
+<div><div class="mini-progress"><span id="todayProgress"></span></div><div id="todayProgressText" style="font-size:12px;color:var(--muted);margin-top:6px">0 / 5 のひみつを発見</div></div>
+<div class="mode-buttons"><button class="primary-btn" id="startRecommended">おまかせ3つ</button><button class="soft-btn" id="openPicker">ゲームをえらぶ</button></div>
+</div>
+</div>
+<div class="section-head"><div><h2>たんけんマップ</h2><p>漢字を選ぶと、今日の冒険が変わります。</p></div><div class="promise" id="mapSummary">発見カード 0 / 20</div></div>
+<div class="zones" id="zones"></div>
+</div></section>
+<section class="page" id="gamePage"><div class="container game-page">
+<div class="game-top"><button class="soft-btn" id="backHomeBtn">← マップへ</button><div class="mission-track" id="missionTrack"></div><button class="soft-btn" id="pauseBtn">今日はここまで</button></div>
+<div class="game-shell">
+<div class="game-header"><div class="game-title"><div class="game-icon" id="gameIcon">👀</div><div><h1 id="gameTitle">全体を見よう</h1><p id="gameSkill">まずは形をまとめて見ます</p></div></div><div class="today-kanji" id="gameKanji" style="width:62px;height:62px;font-size:40px;border-radius:18px">一</div></div>
+<div class="game-body" id="gameBody"></div>
+<div class="game-actions"><div class="action-group"><button class="soft-btn" id="hintBtn">💡 ヒント</button><button class="soft-btn" id="showWholeBtn">👀 全体をもう一度</button></div><div class="action-group"><button class="primary-btn hidden" id="continueBtn">つぎへ</button></div></div>
+</div>
+</div></section>
+<section class="page" id="reflectionPage"><div class="container reflection"><div class="panel">
+<h1>きょうは、どうすると分かりやすかった？</h1><p class="reflection-lead">一つでも、二つでも、「今日は選ばない」でも大丈夫です。正解はありません。</p>
+<div class="strategy-grid" id="strategyGrid"></div>
+<h2 style="font-size:19px;margin-top:24px">書くことは、どうした？</h2><p class="page-sub">書かない日があっても大丈夫。自分で選んだことを記録します。</p>
+<div class="writing-grid" id="writingGrid"></div>
+<div style="text-align:center;margin-top:20px"><button class="primary-btn" id="saveReflectionBtn">観察ノートにのこす</button></div>
+<div class="reward-reveal" id="rewardReveal"><div>今日の発見カード</div><div class="reward-kanji" id="rewardKanji">一</div><h2 id="rewardTitle">よく見つけたね！</h2><p id="rewardText"></p><button class="sun-btn" id="rewardHomeBtn">マップへもどる</button></div>
+</div></div></section>
+<section class="page" id="notebookPage"><div class="container"><h1 class="page-title">観察ノート</h1><p class="page-sub">点数ではなく、「見つけた」「比べた」「工夫した」を集めるノートです。</p><div class="notebook-layout"><div class="panel"><div class="book-grid" id="bookGrid"></div></div><aside><div class="panel"><div class="title-badge" id="titleBadge"></div><h2 style="font-size:18px">育っている見る力</h2><div id="skillBars"></div></div><div class="panel" style="margin-top:14px"><h2 style="font-size:18px;margin-top:0">ぼく・わたしの見つけ方</h2><div class="method-list" id="methodList"></div></div></aside></div></div></section>
+<section class="page" id="adultPage"><div class="container"><h1 class="page-title">おとな画面（匿名プロフィール別）</h1><p class="page-sub">診断や固定的なタイプ判定ではなく、この課題で役立った支援と取り組み方を表示します。</p><div class="adult-layout"><div class="panel"><div class="section-head" style="margin-top:0"><div><h2>学習の記録</h2><p>この端末に保存された記録です。</p></div><select class="soft-btn" id="reportRange"><option value="today">今日</option><option value="week">7日間</option><option value="all">すべて</option></select></div><div class="report-cards" id="reportCards"></div><div id="adultInsights"></div><h2 style="font-size:19px">漢字別の様子</h2><div style="overflow:auto"><table class="adult-table"><thead><tr><th>漢字</th><th>遊んだゲーム</th><th>ヒント</th><th>再挑戦</th><th>発見カード</th></tr></thead><tbody id="adultTableBody"></tbody></table></div><div class="adult-actions"><button class="soft-btn" id="exportBtn">現在の利用者の簡易記録を書き出す</button><button class="soft-btn danger" id="resetBtn">現在の利用者の学習記録を消す</button></div></div><aside><div class="panel"><h2 style="font-size:19px;margin-top:0">最近使いやすかった方法</h2><div class="method-list" id="adultMethods"></div><div class="insight" id="supportTip"></div></div><div class="panel" style="margin-top:14px"><h2 style="font-size:19px;margin-top:0">この試作で見ること</h2><ul style="padding-left:20px;line-height:1.8;color:var(--muted);font-size:13px"><li>説明なしでゲームの目的が分かるか</li><li>誤反応後に続けられるか</li><li>ヒントを自分で使えるか</li><li>振り返りを自分の経験として選べるか</li><li>ごほうびが漢字の観察を邪魔しないか</li></ul></div></aside></div></div>
+<div class="formal-ops-panel" id="formalAdultOps">
+<div class="formal-ops-head"><div><h2>共有iPadの運用</h2><p>現在の利用者：<strong id="formalAdultCurrent">P001</strong></p></div><button class="soft-btn" id="formalLockBtn" type="button">🔒 ロックする</button></div>
+<div class="formal-ops-grid">
+<section><div class="formal-section-head"><h3>利用者</h3><button class="primary-btn" id="formalAddProfile" type="button">追加</button></div><label class="formal-field"><span>記録を表示する利用者</span><select id="formalAdultProfileSelect"></select></label><div class="formal-profile-cards" id="formalProfileCards"></div></section>
+<section><h3>バックアップと復元</h3><div class="formal-action-grid"><button class="soft-btn" id="formalExportCurrent" type="button">現在の記録を書き出す</button><button class="soft-btn" id="formalExportAll" type="button">全利用者を書き出す</button><button class="soft-btn" id="formalImport" type="button">記録を読み込む</button><input accept="application/json,.json" hidden="" id="formalImportFile" type="file"/><button class="soft-btn" disabled="" id="formalRollback" type="button">直前の読み込みを取り消す</button><button class="soft-btn" id="formalChangePin" type="button">大人用PINを変更</button></div><div class="formal-backup-status" id="formalBackupStatus">まだバックアップしていません。</div><p class="formal-privacy">PINはバックアップに含めません。新しいiPadでは新しいPINを設定してから記録を読み込みます。</p></section>
+</div>
+</div>
+</section>
+</main>
+</div>
+<div class="modal" id="settingsModal"><div class="modal-card"><h2>設定</h2><div class="setting-row"><div><label>刺激を少なくする</label><small>きらきら演出を止めます。</small></div><input id="lowStim" type="checkbox"/></div><div class="setting-row"><div><label>動きを少なくする</label><small>アニメーションを止めます。</small></div><input id="reduceMotion" type="checkbox"/></div><div class="setting-row"><div><label>うすい見本</label><small>まだ出ていない線を薄く残します。</small></div><input checked="" id="ghostGuide" type="checkbox"/></div><div class="setting-row"><div><label>1回のゲーム数</label><small>標準は3つです。</small></div><select id="missionCount"><option value="2">ゆっくり2つ</option><option selected="" value="3">おまかせ3つ</option><option value="5">じっくり5つ</option></select></div><div class="setting-row"><div><label>選択肢の数</label><small>あと一画・画順で使います。</small></div><select id="choiceCount"><option value="2">2つ</option><option selected="" value="3">3つ</option></select></div><div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px"><button class="primary-btn" id="closeSettings">とじる</button></div></div></div>
+<div class="modal" id="pauseModal"><div class="modal-card"><h2>今日はここまでにする？</h2><p style="color:var(--muted);line-height:1.7">途中でも、見つけたことは観察ノートに残ります。休むことも作戦です。</p><div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap"><button class="soft-btn" id="resumeBtn">つづける</button><button class="primary-btn" id="finishEarlyBtn">発見を残して終わる</button></div></div></div>
+<div class="modal" id="pickerModal"><div class="modal-card"><h2>ゲームをえらぶ</h2><p style="color:var(--muted)">やってみたいゲームを選んでください。選べないゲームは、その漢字では準備中です。</p><div class="game-picker" id="gamePicker"></div><div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px"><button class="soft-btn" id="cancelPicker">やめる</button><button class="primary-btn" id="startPicked">このゲームで出発</button></div></div></div>
+
+<div class="modal formal-blocking-modal" id="formalFirstRun"><div class="modal-card formal-setup-card"><div class="formal-setup-icon">🔐</div><h2>最初の運用設定</h2><p>共有iPadで記録を分けるため、大人用PINと最初の匿名プロフィールを登録します。</p><label class="formal-field"><span>大人用PIN（4〜8桁）</span><input autocomplete="new-password" id="formalSetupPin" inputmode="numeric" maxlength="8" type="password"/></label><label class="formal-field"><span>PINをもう一度</span><input autocomplete="new-password" id="formalSetupPinConfirm" inputmode="numeric" maxlength="8" type="password"/></label><label class="formal-field"><span>匿名の呼び名</span><input id="formalSetupName" maxlength="16" type="text" value="たんけん1"/><small>実名・学校名・診断名は入力しないでください。</small></label><label class="formal-field"><span>目印</span><select id="formalSetupAvatar"><option>🌱</option><option>🌳</option><option>⭐</option><option>🔎</option><option>🐾</option><option>🌈</option><option>🍀</option><option>🚀</option></select></label><div class="formal-error" id="formalSetupError" role="alert"></div><button class="primary-btn formal-full" id="formalSetupSubmit" type="button">設定してはじめる</button></div></div>
+<div class="modal" id="formalPinModal"><div class="modal-card formal-pin-card"><div class="formal-setup-icon">🔐</div><h2>おとなの確認</h2><p id="formalPinReason">大人用PINを入力してください。</p><input autocomplete="current-password" class="formal-pin-input" id="formalPinInput" inputmode="numeric" maxlength="8" type="password"/><div class="formal-error" id="formalPinError" role="alert"></div><div class="formal-modal-actions"><button class="soft-btn" id="formalPinCancel" type="button">もどる</button><button class="primary-btn" id="formalPinSubmit" type="button">開く</button></div></div></div>
+<div class="modal" id="formalProfileSwitch"><div class="modal-card"><h2>だれの観察ノートを使う？</h2><p>自分のマークと番号を確かめてください。</p><div class="formal-switch-list" id="formalProfileSwitchList"></div><div class="formal-modal-actions"><button class="soft-btn" id="formalSwitchClose" type="button">とじる</button><button class="primary-btn" id="formalManageProfiles" type="button">おとなが管理する</button></div></div></div>
+<div class="modal" id="formalProfileEditor"><div class="modal-card"><h2 id="formalProfileEditorTitle">匿名プロフィールを追加</h2><label class="formal-field"><span>匿名の呼び名</span><input id="formalProfileNameInput" maxlength="16" type="text"/></label><label class="formal-field"><span>目印</span><select id="formalProfileAvatarInput"><option>🌱</option><option>🌳</option><option>⭐</option><option>🔎</option><option>🐾</option><option>🌈</option><option>🍀</option><option>🚀</option></select></label><div class="formal-error" id="formalProfileEditorError"></div><div class="formal-modal-actions"><button class="soft-btn" id="formalProfileEditorCancel" type="button">やめる</button><button class="primary-btn" id="formalProfileEditorSave" type="button">保存</button></div></div></div>
+<div class="modal" id="formalImportModal"><div class="modal-card"><h2>バックアップを読み込む</h2><div class="formal-import-preview" id="formalImportPreview"></div><p>「追加」は既存記録を残して別プロフィールとして追加します。「入れ替え」は全利用者の記録を置き換えます。PINは変わりません。</p><div class="formal-error" id="formalImportError"></div><div class="formal-modal-actions"><button class="soft-btn" id="formalImportCancel" type="button">やめる</button><button class="soft-btn" id="formalImportMerge" type="button">追加する</button><button class="primary-btn" id="formalImportReplace" type="button">入れ替える</button></div></div></div>
+<div class="modal" id="formalChangePinModal"><div class="modal-card"><h2>大人用PINを変更</h2><label class="formal-field"><span>新しいPIN</span><input autocomplete="new-password" id="formalNewPin" inputmode="numeric" maxlength="8" type="password"/></label><label class="formal-field"><span>もう一度</span><input autocomplete="new-password" id="formalNewPinConfirm" inputmode="numeric" maxlength="8" type="password"/></label><div class="formal-error" id="formalChangePinError"></div><div class="formal-modal-actions"><button class="soft-btn" id="formalChangePinCancel" type="button">やめる</button><button class="primary-btn" id="formalChangePinSave" type="button">変更する</button></div></div></div>
+<div aria-live="polite" class="formal-toast" id="formalToast" role="status"></div>
+<script src="/src/main.js" type="module"></script>
+</body></html>

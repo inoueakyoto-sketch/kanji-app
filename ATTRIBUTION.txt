@@ -1,0 +1,5 @@
+Kanji stroke vector data is derived from KanjiVG version 20260714.
+KanjiVG is copyright Ulrich Apel and contributors.
+Licensed under Creative Commons Attribution-ShareAlike 3.0.
+https://kanjivg.tagaini.net/
+https://creativecommons.org/licenses/by-sa/3.0/
